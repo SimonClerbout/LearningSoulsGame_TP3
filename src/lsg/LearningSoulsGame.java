@@ -4,6 +4,8 @@ import lsg.armor.ArmorItem;
 import lsg.armor.BlackWitchVeil;
 import lsg.armor.DragonSlayerLeggings;
 import lsg.armor.RingedKnightArmor;
+import lsg.buffs.rings.DragonSlayerRing;
+import lsg.buffs.rings.RingOfDeath;
 import lsg.buffs.rings.RingOfSwords;
 import lsg.characters.Hero;
 import lsg.characters.Lycanthrope;
@@ -35,14 +37,14 @@ public class LearningSoulsGame {
 
         do{
 
-            System.out.println("\nHit enter  key for next move >\n");
+            System.out.println("\nHit enter key for next move > ");
             String str = scanner.nextLine();
 
             if(hturn) {
 
                 int  attack = hero.attack();
                 int damage = monster.getHitWith(attack);
-                System.out.println(hero.getName() + " attacks " + monster.getName() + " with " + hero.getWeapon() + " ATTACKS:" + attack + " | " + "DMG : " + damage);
+                System.out.println(hero.getName() + " attacks " + monster.getName() + " with " + hero.getWeapon().getName() + " (ATTACK:" + attack + " | " + "DMG : " + damage + ")");
                 this.refresh();
                 hturn = false;
 
@@ -50,14 +52,14 @@ public class LearningSoulsGame {
 
                 int attack2 = monster.attack();
                 int damage2 = hero.getHitWith(attack2);
-                System.out.println(monster.getName() + " attacks " + hero.getName() + " with " + monster.getWeapon() + " ATTACKS:" + attack2 + " | " + "DMG : " + damage2);
+                System.out.println(monster.getName() + " attacks " + hero.getName() + " with " + monster.getWeapon().getName() + " (ATTACK:" + attack2 + " | " + "DMG : " + damage2 + ")");
                 this.refresh();
                 hturn = true;
 
             }
 
         }while(hero.isAlive() && monster.isAlive());
-
+        System.out.println("");
         if(hero.isAlive()){
 
             System.out.println("--- " + hero.getName() + " WINS !!! ---");
@@ -101,9 +103,10 @@ public class LearningSoulsGame {
     private void play_v3(){
 
         this.init();
-        hero.setArmorItem(new BlackWitchVeil(),1);
+       /*hero.setArmorItem(new BlackWitchVeil(),1);*/
         hero.setArmorItem(new DragonSlayerLeggings(),2);
-        hero.setRing(new RingOfSwords(), 2);
+        hero.setRing(new RingOfDeath(), 2);
+        hero.setRing(new DragonSlayerRing(), 1);
         monster = new Lycanthrope();
         this.fight1v1();
 

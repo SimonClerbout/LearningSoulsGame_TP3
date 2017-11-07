@@ -121,6 +121,7 @@ public class Hero extends Character{
         if(i > 0 && i <= MAX_RINGS){
 
             this.rings[i-1] = ring;
+            ring.setHero(this);
 
         }
 
